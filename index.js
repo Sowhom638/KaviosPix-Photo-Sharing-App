@@ -9,7 +9,13 @@ const imageRoutes = require('./routes/image.route');
 const userRoutes = require('./routes/user.route');
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/auth/', authRoutes); // <- NEW LINE
 app.use('/albums', albumRoutes);
